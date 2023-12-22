@@ -1,10 +1,12 @@
 # pyqt-calculator
-계산기입니당
+pyqt를 사용한 계산기입니다
 
 ## Goals
 
 * github 저장소 생성 및 관리 실습
 * PyQt5 기반 계산기 기능 및 사용방법 개선
+* 버튼을 추가한다(없는기능 추가)
+  
 
 ## Getting started
 
