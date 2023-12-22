@@ -1,10 +1,12 @@
 import sys
+import math
 from PyQt5.QtWidgets import *
 
 class Main(QDialog):
     def __init__(self):
         super().__init__()
         self.init_ui()
+        self.cache = "" # 이항연산을 위함이다
 
     def init_ui(self):
         main_layout = QVBoxLayout()
@@ -110,8 +112,19 @@ class Main(QDialog):
 
     def button_operation_clicked(self, operation):
         equation = self.equation.text()
-        equation += operation
-        self.equation.setText(equation)
+        # 캐시가 비어 있으면 캐시로 넣는다.
+        if self.cache == "":
+            self.cache = equation + operation
+            self.equation.setText("")
+            return
+        # 입력값이 없다면, 연산만 바꾼다.
+        if equation == "":
+            self.cache = self.cache[:-1] + operation
+            return
+        # 입력값이 있으면, 계산 후 캐시에 다시 저장한다.
+        value = eval(self.cache + equation)
+        self.cache = str(value) + operation
+        self.equation.setText("")
 
     def button_equal_clicked(self):
         equation = self.equation.text()
